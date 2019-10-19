@@ -20,8 +20,10 @@ extension DataDownloadServiceError: ErrorSinglularRepresentable {
             return "The server must be hung over tbh"
         case .invalidResponseType:
             return "Ooops, guess we've goofed up"
-        case .networkError:
+        case .networkError(let error):
             return "There was a network error"
+
+            return error.localizedDescription // used in gist
         case .unexpectedStatusCode(let code):
             return "The server has responded with status code \(code)-- no idea like-- what?"
         }
@@ -38,7 +40,7 @@ struct DataDownloadServiceStub: DataDownloadServiceProtocol {
                 case 0:
                     return .noData
                 case 1:
-                    return .networkError(NSError(domain: "fuck.you", code: 420, userInfo: nil))
+                    return .networkError(NSError(domain: "com.apple.urlsession.datatask.stub", code: 420, userInfo: nil))
                 case 2:
                     return .unexpectedStatusCode(69)
                 default:

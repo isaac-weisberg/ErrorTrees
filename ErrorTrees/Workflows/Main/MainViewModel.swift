@@ -73,7 +73,22 @@ struct MainViewModel {
             .map { result in
                 switch result.lastResult {
                 case .failure(let reason):
-                    return reason
+                    switch reason {
+                    case .downloadError(let reason):
+                        switch reason {
+                        case .download(let reason):
+                            switch reason {
+                            case .networkError:
+                                return reason
+                            case .invalidResponseType, .noData, .unexpectedStatusCode:
+                                return nil
+                            }
+                        case .parsing:
+                            return nil
+                        }
+                    case .temperatureInvalid:
+                        return nil
+                    }
                 case .success:
                     return nil
                 case .none:
@@ -92,4 +107,35 @@ extension BusinessLogicError: ErrorSinglularRepresentable {
             return reason.errorSingular
         }
     }
+}
+
+
+/*used in a gist*/
+private func asdf() {
+        let newForecastRecieved: Observable<Result<ForecastDTO, BusinessLogicError>> = .never()
+
+        let minorError = newForecastRecieved
+            .map { result -> String? in
+                switch result {
+                case .failure(let reason):
+                    switch reason {
+                    case .downloadError(let reason):
+                        switch reason {
+                        case .download(let reason):
+                            switch reason {
+                            case .networkError(let reason):
+                                return reason.localizedDescription
+                            case .invalidResponseType, .noData, .unexpectedStatusCode:
+                                return nil
+                            }
+                        case .parsing:
+                            return nil
+                        }
+                    case .temperatureInvalid:
+                        return nil
+                    }
+                case .success:
+                    return nil
+                }
+            }
 }
