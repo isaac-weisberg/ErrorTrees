@@ -5,6 +5,7 @@ enum DataDownloadServiceError: Error {
     case noData
     case networkError(Error)
     case invalidResponseType
+    case unauthorized
 }
 
 typealias DataDownloadResult = Single<Result<Data, DataDownloadServiceError>>
@@ -25,6 +26,8 @@ extension DataDownloadServiceError: ErrorTitledSingularRepresentable {
              // used in gist
         case .unexpectedStatusCode(let code):
             return ErrorTitledSingular("Failure", "The server has responded with status code \(code)-- no idea like-- what?")
+        case .unauthorized:
+            return ErrorTitledSingular("Nope", "The server says you ain't authorized")
         }
     }
 }
@@ -32,7 +35,7 @@ extension DataDownloadServiceError: ErrorTitledSingularRepresentable {
 struct DataDownloadServiceStub: DataDownloadServiceProtocol {
     func download(from url: URL) -> DataDownloadResult {
         return Single.deferred {
-            let random = Int.random(in: 0..<4)
+            let random = Int.random(in: 0..<5)
 
             let failure = { () -> DataDownloadServiceError in
                 switch random {
@@ -42,6 +45,8 @@ struct DataDownloadServiceStub: DataDownloadServiceProtocol {
                     return .networkError(NSError(domain: "com.apple.urlsession.datatask.stub", code: 420, userInfo: nil))
                 case 2:
                     return .unexpectedStatusCode(69)
+                case 3:
+                    return .unauthorized
                 default:
                     return .invalidResponseType
                 }

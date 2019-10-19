@@ -11,14 +11,30 @@ import UIKit
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
 
-        let controller = UIStoryboard(name: "Main", bundle: .main)
-            .instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+        let controller = MainViewController.instantiate()
 
         controller.viewModel = MainViewModel(deps: dependencies, temperatureRange: -10...25)
+
+        controller.viewModel.authError
+            .bind(onNext: { [unowned controller] error in
+                let authController = AuthController.instantiate()
+
+                authController.viewModel = AuthViewModel(presenter: error)
+
+                authController.viewModel.logIn
+                    .bind(onNext: { [unowned controller] _ in
+                        controller.dismiss(animated: true)
+                    })
+                    .disposed(by: authController.disposeBag)
+
+                controller.present(authController, animated: true)
+            })
+            .disposed(by: controller.disposeBag)
 
         window.rootViewController = controller
 
         window.makeKeyAndVisible()
+
 
         return true
     }

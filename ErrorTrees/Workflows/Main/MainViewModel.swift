@@ -19,6 +19,7 @@ struct MainViewModel {
     let temperature: Observable<TemperatureState>
     let minorError: Observable<ErrorSingularRepresentable?>
     let majorError: Observable<ErrorTitledSingularRepresentable>
+    let authError: Observable<AuthErrorModelRepresentable>
 
     let forecastRequested = PublishSubject<Void>()
 
@@ -43,6 +44,13 @@ struct MainViewModel {
                 let result = result
                     .mapError { error in
                         BusinessLogicError.downloadError(error)
+                    }
+                    .flatMap { forecast -> ForecastDownloadResult in
+                        let temperature = forecast.temperature
+                        guard temperatureRange.contains(temperature) else {
+                            return .failure(BusinessLogicError.temperatureInvalid(temperature))
+                        }
+                        return .success(forecast)
                     }
 
                 let temperatureState = { () -> TemperatureState in
@@ -81,7 +89,7 @@ struct MainViewModel {
                             switch reason {
                             case .networkError:
                                 return outerReason
-                            case .invalidResponseType, .noData, .unexpectedStatusCode:
+                            case .invalidResponseType, .noData, .unexpectedStatusCode, .unauthorized:
                                 return nil
                             }
                         case .parsing:
@@ -110,12 +118,38 @@ struct MainViewModel {
                             switch reason {
                             case .noData, .invalidResponseType, .unexpectedStatusCode:
                                 return outerReason
-                            case .networkError:
+                            case .networkError, .unauthorized:
                                 return nil
                             }
                         }
                     case .temperatureInvalid:
                         return outerReason
+                    }
+                }
+            }
+            .filter { $0 != nil }.map { $0! }
+
+        authError = forecast
+            .map { result -> AuthErrorModelRepresentable? in
+                switch result.lastResult {
+                case .none, .success:
+                    return nil
+                case .failure(let reason):
+                    switch reason {
+                    case .downloadError(let reason):
+                        switch reason {
+                        case .download(let reason):
+                            switch reason {
+                            case .unauthorized:
+                                return AuthErrorFromMain()
+                            case .networkError, .invalidResponseType, .noData, .unexpectedStatusCode:
+                                return nil
+                            }
+                        case .parsing:
+                            return nil
+                        }
+                    case .temperatureInvalid:
+                        return nil
                     }
                 }
             }
@@ -155,7 +189,7 @@ private func asdf() {
                             switch reason {
                             case .networkError(let reason):
                                 return reason.localizedDescription
-                            case .invalidResponseType, .noData, .unexpectedStatusCode:
+                            case .invalidResponseType, .noData, .unexpectedStatusCode, .unauthorized:
                                 return nil
                             }
                         case .parsing:

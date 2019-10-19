@@ -26,6 +26,13 @@ class ForecastDownloadService {
     }
 
     func downloadForecast(from url: URL) -> Single<ForecastDownloadResult> {
+        let rand = (0..<6).randomElement()
+        if rand == 5 {
+            return .just(.success(ForecastDTO(temperature: 12)))
+        }
+        if rand == 0 {
+            return .just(.success(ForecastDTO(temperature: 9000)))
+        }
         return dataDownloader.download(from: url)
             .map { result in
                 result

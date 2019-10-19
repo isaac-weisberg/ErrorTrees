@@ -75,3 +75,10 @@ class MainViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 }
+
+extension MainViewController {
+    static func instantiate() -> MainViewController {
+        return UIStoryboard(name: "Main", bundle: .main)
+            .instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+    }
+}
