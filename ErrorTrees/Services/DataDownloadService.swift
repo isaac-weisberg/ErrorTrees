@@ -13,6 +13,21 @@ protocol DataDownloadServiceProtocol {
     func download(from url: URL) -> DataDownloadResult
 }
 
+extension DataDownloadServiceError: ErrorSinglularRepresentable {
+    var errorSingular: ErrorSingularType {
+        switch self {
+        case .noData:
+            return "The server must be hung over tbh"
+        case .invalidResponseType:
+            return "Ooops, guess we've goofed up"
+        case .networkError:
+            return "There was a network error"
+        case .unexpectedStatusCode(let code):
+            return "The server has responded with status code \(code)-- no idea like-- what?"
+        }
+    }
+}
+
 struct DataDownloadServiceStub: DataDownloadServiceProtocol {
     func download(from url: URL) -> DataDownloadResult {
         return Single.deferred {

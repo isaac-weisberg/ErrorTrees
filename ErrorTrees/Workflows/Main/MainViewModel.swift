@@ -85,6 +85,11 @@ struct MainViewModel {
 
 extension BusinessLogicError: ErrorSinglularRepresentable {
     var errorSingular: ErrorSingularType {
-        return "Fuck"
+        switch self {
+        case .temperatureInvalid(let temp):
+            return "\(temp) doesn't seem quite right"
+        case .downloadError(let reason):
+            return reason.errorSingular
+        }
     }
 }

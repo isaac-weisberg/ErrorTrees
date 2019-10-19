@@ -5,6 +5,17 @@ enum ForecastDownloadError: Error {
     case parsing(Error)
 }
 
+extension ForecastDownloadError: ErrorSinglularRepresentable {
+    var errorSingular: ErrorSingularType {
+        switch self {
+        case .parsing:
+            return "There was a problem decoding the forecast"
+        case .download(let reason):
+            return reason.errorSingular
+        }
+    }
+}
+
 typealias ForecastDownloadResult = Result<ForecastDTO, ForecastDownloadError>
 
 class ForecastDownloadService {
