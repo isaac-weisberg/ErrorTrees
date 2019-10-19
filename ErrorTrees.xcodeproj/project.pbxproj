@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		484F5659AF1D4A292563D89A /* libPods-ErrorTrees.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5489EE7D8BFC3D652E6926 /* libPods-ErrorTrees.a */; };
-		FA049281235B5EF10052B8D1 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA049280235B5EF10052B8D1 /* AuthController.swift */; };
-		FA049283235B602A0052B8D1 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA049282235B602A0052B8D1 /* AuthViewModel.swift */; };
+		FA049281235B5EF10052B8D1 /* AuthErrorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA049280235B5EF10052B8D1 /* AuthErrorController.swift */; };
+		FA049283235B602A0052B8D1 /* AuthErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA049282235B602A0052B8D1 /* AuthErrorViewModel.swift */; };
 		FA049285235B60520052B8D1 /* AuthErrorRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA049284235B60520052B8D1 /* AuthErrorRepresentable.swift */; };
 		FA049287235B63B60052B8D1 /* AuthErrorFromMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA049286235B63B60052B8D1 /* AuthErrorFromMain.swift */; };
 		FA722885235A716A00FAE942 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA722884235A716A00FAE942 /* AppDelegate.swift */; };
@@ -29,8 +29,8 @@
 		1E5489EE7D8BFC3D652E6926 /* libPods-ErrorTrees.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ErrorTrees.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		465C814C9B937AED2833BADB /* Pods-ErrorTrees.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErrorTrees.debug.xcconfig"; path = "Target Support Files/Pods-ErrorTrees/Pods-ErrorTrees.debug.xcconfig"; sourceTree = "<group>"; };
 		77C0B68389EE0A0732EE73C1 /* Pods-ErrorTrees.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ErrorTrees.release.xcconfig"; path = "Target Support Files/Pods-ErrorTrees/Pods-ErrorTrees.release.xcconfig"; sourceTree = "<group>"; };
-		FA049280235B5EF10052B8D1 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
-		FA049282235B602A0052B8D1 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		FA049280235B5EF10052B8D1 /* AuthErrorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorController.swift; sourceTree = "<group>"; };
+		FA049282235B602A0052B8D1 /* AuthErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorViewModel.swift; sourceTree = "<group>"; };
 		FA049284235B60520052B8D1 /* AuthErrorRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorRepresentable.swift; sourceTree = "<group>"; };
 		FA049286235B63B60052B8D1 /* AuthErrorFromMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorFromMain.swift; sourceTree = "<group>"; };
 		FA722881235A716A00FAE942 /* ErrorTrees.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ErrorTrees.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,8 +80,8 @@
 		FA04927F235B5EE00052B8D1 /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
-				FA049280235B5EF10052B8D1 /* AuthController.swift */,
-				FA049282235B602A0052B8D1 /* AuthViewModel.swift */,
+				FA049280235B5EF10052B8D1 /* AuthErrorController.swift */,
+				FA049282235B602A0052B8D1 /* AuthErrorViewModel.swift */,
 				FA049284235B60520052B8D1 /* AuthErrorRepresentable.swift */,
 			);
 			path = Authorization;
@@ -256,12 +256,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA049285235B60520052B8D1 /* AuthErrorRepresentable.swift in Sources */,
-				FA049283235B602A0052B8D1 /* AuthViewModel.swift in Sources */,
+				FA049283235B602A0052B8D1 /* AuthErrorViewModel.swift in Sources */,
 				FA7228A2235A77A800FAE942 /* ForecastDTO.swift in Sources */,
 				FA72289D235A746200FAE942 /* Dependencies.swift in Sources */,
 				FA722889235A716A00FAE942 /* MainViewController.swift in Sources */,
 				FA722885235A716A00FAE942 /* AppDelegate.swift in Sources */,
-				FA049281235B5EF10052B8D1 /* AuthController.swift in Sources */,
+				FA049281235B5EF10052B8D1 /* AuthErrorController.swift in Sources */,
 				FA049287235B63B60052B8D1 /* AuthErrorFromMain.swift in Sources */,
 				FA7228A0235A74CC00FAE942 /* DataDownloadService.swift in Sources */,
 				FA8AF7EC235B038A003947E5 /* ErrorHandling.swift in Sources */,

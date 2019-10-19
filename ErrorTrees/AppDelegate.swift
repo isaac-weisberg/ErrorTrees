@@ -17,9 +17,9 @@ import UIKit
 
         controller.viewModel.authError
             .bind(onNext: { [unowned controller] error in
-                let authController = AuthController.instantiate()
+                let authController = AuthErrorController.instantiate()
 
-                authController.viewModel = AuthViewModel(presenter: error)
+                authController.viewModel = AuthErrorViewModel(presenter: error)
 
                 authController.viewModel.logIn
                     .bind(onNext: { [unowned controller] _ in

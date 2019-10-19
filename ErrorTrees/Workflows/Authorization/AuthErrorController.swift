@@ -2,10 +2,10 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-class AuthController: UIViewController {
+class AuthErrorController: UIViewController {
     let disposeBag = DisposeBag()
 
-    var viewModel: AuthViewModel!
+    var viewModel: AuthErrorViewModel!
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
@@ -27,9 +27,9 @@ class AuthController: UIViewController {
     }
 }
 
-extension AuthController {
-    static func instantiate() -> AuthController {
+extension AuthErrorController {
+    static func instantiate() -> AuthErrorController {
         return UIStoryboard(name: "Main", bundle: .main)
-            .instantiateViewController(withIdentifier: "AuthController") as! AuthController
+            .instantiateViewController(withIdentifier: "AuthErrorController") as! AuthErrorController
     }
 }
