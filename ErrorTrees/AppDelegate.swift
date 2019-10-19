@@ -14,11 +14,11 @@ import UIKit
         let controller = UIStoryboard(name: "Main", bundle: .main)
             .instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
 
+        controller.viewModel = MainViewModel(deps: dependencies, temperatureRange: -10...25)
+
         window.rootViewController = controller
 
         window.makeKeyAndVisible()
-
-        controller.viewModel = MainViewModel(deps: dependencies, temperatureRange: -10...25)
 
         return true
     }

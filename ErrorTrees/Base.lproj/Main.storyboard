@@ -23,16 +23,26 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LG-ge-akO">
                                 <rect key="frame" x="146.5" y="195.5" width="121" height="62.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="52"/>
-                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eL-iE-S5b">
+                                <rect key="frame" x="186" y="151" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="0LG-ge-akO" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="0.5" id="Bar-61-AI0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8eL-iE-S5b" secondAttribute="trailing" id="FH6-eU-2ki"/>
                             <constraint firstItem="u7v-2W-QDT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Qz0-Ci-X5c"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0LG-ge-akO" secondAttribute="trailing" id="Sen-VT-PX8"/>
+                            <constraint firstItem="8eL-iE-S5b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="U7U-CE-amn"/>
                             <constraint firstItem="0LG-ge-akO" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VcB-eM-qWK"/>
+                            <constraint firstItem="0LG-ge-akO" firstAttribute="top" secondItem="8eL-iE-S5b" secondAttribute="bottom" constant="24" id="W7X-i5-EN0"/>
+                            <constraint firstItem="8eL-iE-S5b" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="WdM-EL-AQV"/>
                             <constraint firstItem="0LG-ge-akO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hti-uK-9u0"/>
                             <constraint firstItem="u7v-2W-QDT" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="1.5" id="v3D-Z2-PVl"/>
                         </constraints>
@@ -41,6 +51,7 @@
                     <connections>
                         <outlet property="requestForecast" destination="u7v-2W-QDT" id="xnw-QI-dBU"/>
                         <outlet property="temperatureLabel" destination="0LG-ge-akO" id="oiw-oL-JcU"/>
+                        <outlet property="temperatureTitle" destination="8eL-iE-S5b" id="ruU-18-rLC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

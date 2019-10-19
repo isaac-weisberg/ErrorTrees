@@ -1,6 +1,6 @@
 import RxSwift
 
-private let url = URL(string: "http://lolshock.com")!
+private let url = URL(string: "https://apple.com")!
 
 private enum BusinessLogicError: Error {
     case downloadError(JsonDownloadServiceError)
@@ -37,15 +37,11 @@ struct MainViewModel {
             }
         }
 
-        let forecastArrived = forecastRequested
+        temperature = forecastRequested
             .observeOn(scheduler)
             .map { _ in
                 forecast()
             }
-            .observeOn(MainScheduler.asyncInstance)
-            .share()
-
-        temperature = forecastArrived
             .scan(TemperatureState.unknown) { state, result in
                 switch result {
                 case .success(let forecast):
@@ -59,5 +55,7 @@ struct MainViewModel {
                     }
                 }
             }
+            .observeOn(MainScheduler.asyncInstance)
+            .share(replay: 1, scope: .whileConnected)
     }
 }
