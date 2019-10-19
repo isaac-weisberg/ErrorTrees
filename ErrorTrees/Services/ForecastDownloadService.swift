@@ -5,13 +5,13 @@ enum ForecastDownloadError: Error {
     case parsing(Error)
 }
 
-extension ForecastDownloadError: ErrorSinglularRepresentable {
-    var errorSingular: ErrorSingularType {
+extension ForecastDownloadError: ErrorTitledSingularRepresentable {
+    var errorTitleSingular: ErrorTitledSingularType {
         switch self {
         case .parsing:
-            return "There was a problem decoding the forecast"
+            return ErrorTitledSingular("Dang it", "There was a problem decoding the forecast")
         case .download(let reason):
-            return reason.errorSingular
+            return reason.errorTitleSingular
         }
     }
 }

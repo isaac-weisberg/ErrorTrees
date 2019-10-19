@@ -13,19 +13,18 @@ protocol DataDownloadServiceProtocol {
     func download(from url: URL) -> DataDownloadResult
 }
 
-extension DataDownloadServiceError: ErrorSinglularRepresentable {
-    var errorSingular: ErrorSingularType {
+extension DataDownloadServiceError: ErrorTitledSingularRepresentable {
+    var errorTitleSingular: ErrorTitledSingularType {
         switch self {
         case .noData:
-            return "The server must be hung over tbh"
+            return ErrorTitledSingular("Yikes!", "The server must be hung over tbh")
         case .invalidResponseType:
-            return "Ooops, guess we've goofed up"
+            return ErrorTitledSingular("Darn", "Ooops, guess we've goofed up")
         case .networkError(let error):
-            return "There was a network error"
-
-            return error.localizedDescription // used in gist
+            return ErrorTitledSingular("Error", "There was a network error" ?? error.localizedDescription)
+             // used in gist
         case .unexpectedStatusCode(let code):
-            return "The server has responded with status code \(code)-- no idea like-- what?"
+            return ErrorTitledSingular("Failure", "The server has responded with status code \(code)-- no idea like-- what?")
         }
     }
 }

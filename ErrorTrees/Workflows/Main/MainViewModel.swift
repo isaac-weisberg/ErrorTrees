@@ -17,7 +17,8 @@ struct MainViewModel {
     }
 
     let temperature: Observable<TemperatureState>
-    let minorError: Observable<ErrorSinglularRepresentable?>
+    let minorError: Observable<ErrorSingularRepresentable?>
+    let majorError: Observable<ErrorTitledSingularRepresentable>
 
     let forecastRequested = PublishSubject<Void>()
 
@@ -72,14 +73,14 @@ struct MainViewModel {
         minorError = forecast
             .map { result in
                 switch result.lastResult {
-                case .failure(let reason):
-                    switch reason {
+                case .failure(let outerReason):
+                    switch outerReason {
                     case .downloadError(let reason):
                         switch reason {
                         case .download(let reason):
                             switch reason {
                             case .networkError:
-                                return reason
+                                return outerReason
                             case .invalidResponseType, .noData, .unexpectedStatusCode:
                                 return nil
                             }
@@ -89,26 +90,55 @@ struct MainViewModel {
                     case .temperatureInvalid:
                         return nil
                     }
-                case .success:
-                    return nil
-                case .none:
+                case .success, .none:
                     return nil
                 }
             }
+
+        majorError = forecast
+            .map { result -> ErrorTitledSingularRepresentable? in
+                switch result.lastResult {
+                case .none, .success:
+                    return nil
+                case .failure(let outerReason):
+                    switch outerReason {
+                    case .downloadError(let reason):
+                        switch reason {
+                        case .parsing:
+                            return outerReason
+                        case .download(let reason):
+                            switch reason {
+                            case .noData, .invalidResponseType, .unexpectedStatusCode:
+                                return outerReason
+                            case .networkError:
+                                return nil
+                            }
+                        }
+                    case .temperatureInvalid:
+                        return outerReason
+                    }
+                }
+            }
+            .filter { $0 != nil }.map { $0! }
     }
 }
 
-extension BusinessLogicError: ErrorSinglularRepresentable {
-    var errorSingular: ErrorSingularType {
+extension BusinessLogicError: ErrorTitledSingularRepresentable {
+    var errorTitleSingular: ErrorTitledSingularType {
         switch self {
         case .temperatureInvalid(let temp):
-            return "\(temp) doesn't seem quite right"
+            return ErrorTitledSingular("No wait", "\(temp) doesn't seem quite right")
         case .downloadError(let reason):
-            return reason.errorSingular
+            return reason.errorTitleSingular
         }
     }
 }
 
+extension BusinessLogicError: ErrorSingularRepresentable {
+    var errorSingular: ErrorSingularType {
+        return errorTitleSingular.singularDescription
+    }
+}
 
 /*used in a gist*/
 private func asdf() {

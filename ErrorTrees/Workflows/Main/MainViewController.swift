@@ -49,11 +49,28 @@ class MainViewController: UIViewController {
             .bind(onNext: { [unowned self] error in
                 switch error {
                 case .some(let error):
+                    let errorText = error.errorSingular.singluarDescription
+
                     self.bottomErrorContainer.isHidden = false
-                    self.bottomErrorLabel.text = error.errorSingular.singluarDescription
+                    self.bottomErrorLabel.text = errorText
                 case .none:
                     self.bottomErrorContainer.isHidden = true
                 }
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.majorError
+            .bind(onNext: { [unowned self] error in
+                let errorUserFriendly = error.errorTitleSingular
+
+                let alert = UIAlertController(
+                    title: errorUserFriendly.title,
+                    message: errorUserFriendly.singularDescription,
+                    preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in }))
+
+                self.present(alert, animated: true)
             })
             .disposed(by: disposeBag)
     }
