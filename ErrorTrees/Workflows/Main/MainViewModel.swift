@@ -124,19 +124,19 @@ struct MainViewModel {
 }
 
 extension BusinessLogicError: ErrorTitledSingularRepresentable {
-    var errorTitleSingular: ErrorTitledSingularType {
+    var errorTitledSingular: ErrorTitledSingularType {
         switch self {
         case .temperatureInvalid(let temp):
             return ErrorTitledSingular("No wait", "\(temp) doesn't seem quite right")
         case .downloadError(let reason):
-            return reason.errorTitleSingular
+            return reason.errorTitledSingular
         }
     }
 }
 
 extension BusinessLogicError: ErrorSingularRepresentable {
     var errorSingular: ErrorSingularType {
-        return errorTitleSingular.singularDescription
+        return errorTitledSingular.singularDescription
     }
 }
 

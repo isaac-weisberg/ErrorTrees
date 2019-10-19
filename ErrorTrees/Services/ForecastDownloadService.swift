@@ -6,12 +6,12 @@ enum ForecastDownloadError: Error {
 }
 
 extension ForecastDownloadError: ErrorTitledSingularRepresentable {
-    var errorTitleSingular: ErrorTitledSingularType {
+    var errorTitledSingular: ErrorTitledSingularType {
         switch self {
         case .parsing:
             return ErrorTitledSingular("Dang it", "There was a problem decoding the forecast")
         case .download(let reason):
-            return reason.errorTitleSingular
+            return reason.errorTitledSingular
         }
     }
 }

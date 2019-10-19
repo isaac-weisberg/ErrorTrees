@@ -14,7 +14,7 @@ protocol DataDownloadServiceProtocol {
 }
 
 extension DataDownloadServiceError: ErrorTitledSingularRepresentable {
-    var errorTitleSingular: ErrorTitledSingularType {
+    var errorTitledSingular: ErrorTitledSingularType {
         switch self {
         case .noData:
             return ErrorTitledSingular("Yikes!", "The server must be hung over tbh")

@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
             .bind(onNext: { [unowned self] error in
                 switch error {
                 case .some(let error):
-                    let errorText = error.errorSingular.singluarDescription
+                    let errorText = error.errorSingular.singularDescription
 
                     self.bottomErrorContainer.isHidden = false
                     self.bottomErrorLabel.text = errorText
@@ -61,7 +61,7 @@ class MainViewController: UIViewController {
 
         viewModel.majorError
             .bind(onNext: { [unowned self] error in
-                let errorUserFriendly = error.errorTitleSingular
+                let errorUserFriendly = error.errorTitledSingular
 
                 let alert = UIAlertController(
                     title: errorUserFriendly.title,

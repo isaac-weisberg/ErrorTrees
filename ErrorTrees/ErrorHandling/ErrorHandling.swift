@@ -1,5 +1,5 @@
 protocol ErrorSingularType {
-    var singluarDescription: String { get }
+    var singularDescription: String { get }
 }
 
 protocol ErrorSingularRepresentable {
@@ -7,7 +7,7 @@ protocol ErrorSingularRepresentable {
 }
 
 extension String: ErrorSingularType {
-    var singluarDescription: String {
+    var singularDescription: String {
         return self
     }
 }
@@ -30,5 +30,5 @@ struct ErrorTitledSingular: ErrorTitledSingularType {
 }
 
 protocol ErrorTitledSingularRepresentable {
-    var errorTitleSingular: ErrorTitledSingularType { get }
+    var errorTitledSingular: ErrorTitledSingularType { get }
 }
