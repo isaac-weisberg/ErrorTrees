@@ -2,17 +2,24 @@ protocol HasVoidService {
 
 }
 
-protocol HasJsonDownloadService {
-    var jsonDownloader: JsonDownloadService { get }
+protocol HasDataDownloadService {
+    var dataDownloader: DataDownloadServiceProtocol { get }
+}
+
+protocol HasForecastDownloadService {
+    var forecastDownloader: ForecastDownloadService { get }
 }
 
 typealias HasAllDependencies = HasVoidService
-    & HasJsonDownloadService
+    & HasDataDownloadService
+    & HasForecastDownloadService
 
 class DependenciesDefault: HasAllDependencies {
-    let jsonDownloader: JsonDownloadService
+    let dataDownloader: DataDownloadServiceProtocol
+    let forecastDownloader: ForecastDownloadService
 
     init() {
-        jsonDownloader = JsonDownloadService()
+        dataDownloader = DataDownloadServiceStub() //DataDownloadService(session: .shared)
+        forecastDownloader = ForecastDownloadService(dataDownloader: dataDownloader)
     }
 }

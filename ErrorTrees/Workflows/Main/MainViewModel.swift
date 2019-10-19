@@ -3,12 +3,12 @@ import RxSwift
 private let url = URL(string: "https://apple.com")!
 
 private enum BusinessLogicError: Error {
-    case downloadError(JsonDownloadServiceError)
+    case downloadError(DataDownloadServiceError)
     case temperatureInvalid(Double)
 }
 
 struct MainViewModel {
-    typealias Deps = HasJsonDownloadService
+    typealias Deps = HasForecastDownloadService
 
     enum TemperatureState {
         case unknown
@@ -23,25 +23,12 @@ struct MainViewModel {
     init(deps: Deps, temperatureRange: ClosedRange<Double>) {
         let scheduler = SerialDispatchQueueScheduler(qos: .userInitiated)
 
-        let forecast = {
-            deps.jsonDownloader.downloadJson(from: url)
-                .mapError { error -> BusinessLogicError in
-                    .downloadError(error)
-            }
-            .flatMap { (forecast: ForecastDTO) -> Result<ForecastDTO, BusinessLogicError> in
-                let temperature = forecast.temperature
-                guard temperatureRange.contains(temperature) else {
-                    return.failure(BusinessLogicError.temperatureInvalid(temperature))
-                }
-                return .success(forecast)
-            }
-        }
-
         temperature = forecastRequested
             .observeOn(scheduler)
-            .map { _ in
-                forecast()
+            .flatMapLatest { _ in
+                deps.forecastDownloader.downloadForecast(from: url)
             }
+            .debug()
             .scan(TemperatureState.unknown) { state, result in
                 switch result {
                 case .success(let forecast):

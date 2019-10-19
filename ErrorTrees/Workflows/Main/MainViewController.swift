@@ -40,7 +40,6 @@ class MainViewController: UIViewController {
                     return "There was an error downloading the forecast"
                 }
             }
-            .debug()
             .bind(to: temperatureTitle.rx.text)
             .disposed(by: disposeBag)
     }

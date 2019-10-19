@@ -15,8 +15,9 @@
 		FA722891235A716B00FAE942 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA72288F235A716B00FAE942 /* LaunchScreen.storyboard */; };
 		FA72289B235A73A300FAE942 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA72289A235A73A300FAE942 /* MainViewModel.swift */; };
 		FA72289D235A746200FAE942 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA72289C235A746200FAE942 /* Dependencies.swift */; };
-		FA7228A0235A74CC00FAE942 /* JsonDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA72289F235A74CC00FAE942 /* JsonDownloadService.swift */; };
+		FA7228A0235A74CC00FAE942 /* DataDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA72289F235A74CC00FAE942 /* DataDownloadService.swift */; };
 		FA7228A2235A77A800FAE942 /* ForecastDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7228A1235A77A800FAE942 /* ForecastDTO.swift */; };
+		FA8AF7E9235AFA2B003947E5 /* ForecastDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8AF7E8235AFA2B003947E5 /* ForecastDownloadService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +33,9 @@
 		FA722892235A716B00FAE942 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA72289A235A73A300FAE942 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		FA72289C235A746200FAE942 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
-		FA72289F235A74CC00FAE942 /* JsonDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDownloadService.swift; sourceTree = "<group>"; };
+		FA72289F235A74CC00FAE942 /* DataDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDownloadService.swift; sourceTree = "<group>"; };
 		FA7228A1235A77A800FAE942 /* ForecastDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDTO.swift; sourceTree = "<group>"; };
+		FA8AF7E8235AFA2B003947E5 /* ForecastDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDownloadService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				FA72289C235A746200FAE942 /* Dependencies.swift */,
-				FA72289F235A74CC00FAE942 /* JsonDownloadService.swift */,
+				FA72289F235A74CC00FAE942 /* DataDownloadService.swift */,
+				FA8AF7E8235AFA2B003947E5 /* ForecastDownloadService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -225,7 +228,8 @@
 				FA72289D235A746200FAE942 /* Dependencies.swift in Sources */,
 				FA722889235A716A00FAE942 /* MainViewController.swift in Sources */,
 				FA722885235A716A00FAE942 /* AppDelegate.swift in Sources */,
-				FA7228A0235A74CC00FAE942 /* JsonDownloadService.swift in Sources */,
+				FA7228A0235A74CC00FAE942 /* DataDownloadService.swift in Sources */,
+				FA8AF7E9235AFA2B003947E5 /* ForecastDownloadService.swift in Sources */,
 				FA72289B235A73A300FAE942 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
