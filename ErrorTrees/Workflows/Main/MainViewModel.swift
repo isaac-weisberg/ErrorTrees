@@ -31,12 +31,14 @@ struct MainViewModel {
             let lastResult: ForecastDownloadResult?
         }
 
+        let initialState = InternalState(temperature: .unknown, lastResult: nil)
+
         let forecast = forecastRequested
             .observeOn(scheduler)
             .flatMapLatest { _ in
                 deps.forecastDownloader.downloadForecast(from: url)
             }
-            .scan(InternalState(temperature: .unknown, lastResult: nil)) { internalState, result in
+            .scan(initialState) { internalState, result in
                 let result = result
                     .mapError { error in
                         BusinessLogicError.downloadError(error)
@@ -58,6 +60,7 @@ struct MainViewModel {
 
                 return InternalState(temperature: temperatureState, lastResult: result)
             }
+            .startWith(initialState)
             .observeOn(MainScheduler.asyncInstance)
             .share(replay: 1, scope: .whileConnected)
 
