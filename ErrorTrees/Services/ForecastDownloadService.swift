@@ -5,6 +5,8 @@ enum ForecastDownloadError: Error {
     case parsing(Error)
 }
 
+typealias ForecastDownloadResult = Result<ForecastDTO, ForecastDownloadError>
+
 class ForecastDownloadService {
     let dataDownloader: DataDownloadServiceProtocol
 
@@ -12,7 +14,7 @@ class ForecastDownloadService {
         self.dataDownloader = dataDownloader
     }
 
-    func downloadForecast(from url: URL) -> Single<Result<ForecastDTO, ForecastDownloadError>> {
+    func downloadForecast(from url: URL) -> Single<ForecastDownloadResult> {
         return dataDownloader.download(from: url)
             .map { result in
                 result

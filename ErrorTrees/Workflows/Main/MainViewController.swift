@@ -9,7 +9,9 @@ class MainViewController: UIViewController {
     @IBOutlet var requestForecast: UIButton!
     @IBOutlet var temperatureLabel: UILabel!
     @IBOutlet var temperatureTitle: UILabel!
-    
+    @IBOutlet var bottomErrorContainer: UIView!
+    @IBOutlet var bottomErrorLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,6 +43,18 @@ class MainViewController: UIViewController {
                 }
             }
             .bind(to: temperatureTitle.rx.text)
+            .disposed(by: disposeBag)
+
+        viewModel.minorError
+            .bind(onNext: { [unowned self] error in
+                switch error {
+                case .some(let error):
+                    self.bottomErrorContainer.isHidden = false
+                    self.bottomErrorLabel.text = error.errorSingular.singluarDescription
+                case .none:
+                    self.bottomErrorContainer.isHidden = true
+                }
+            })
             .disposed(by: disposeBag)
     }
 }
