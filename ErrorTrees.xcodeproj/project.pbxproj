@@ -22,6 +22,7 @@
 		FA7228A0235A74CC00FAE942 /* DataDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA72289F235A74CC00FAE942 /* DataDownloadService.swift */; };
 		FA7228A2235A77A800FAE942 /* ForecastDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7228A1235A77A800FAE942 /* ForecastDTO.swift */; };
 		FA8372BC235F2A2000F2E044 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8372BB235F2A2000F2E044 /* AppCoordinator.swift */; };
+		FA8372C0235F563C00F2E044 /* AuthErrorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8372BF235F563C00F2E044 /* AuthErrorCoordinator.swift */; };
 		FA8AF7E9235AFA2B003947E5 /* ForecastDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8AF7E8235AFA2B003947E5 /* ForecastDownloadService.swift */; };
 		FA8AF7EC235B038A003947E5 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8AF7EB235B038A003947E5 /* ErrorHandling.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 		FA72289F235A74CC00FAE942 /* DataDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDownloadService.swift; sourceTree = "<group>"; };
 		FA7228A1235A77A800FAE942 /* ForecastDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDTO.swift; sourceTree = "<group>"; };
 		FA8372BB235F2A2000F2E044 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		FA8372BF235F563C00F2E044 /* AuthErrorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorCoordinator.swift; sourceTree = "<group>"; };
 		FA8AF7E8235AFA2B003947E5 /* ForecastDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDownloadService.swift; sourceTree = "<group>"; };
 		FA8AF7EB235B038A003947E5 /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +87,7 @@
 				FA049280235B5EF10052B8D1 /* AuthErrorController.swift */,
 				FA049282235B602A0052B8D1 /* AuthErrorViewModel.swift */,
 				FA049284235B60520052B8D1 /* AuthErrorRepresentable.swift */,
+				FA8372BF235F563C00F2E044 /* AuthErrorCoordinator.swift */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				FA049285235B60520052B8D1 /* AuthErrorRepresentable.swift in Sources */,
 				FA049283235B602A0052B8D1 /* AuthErrorViewModel.swift in Sources */,
 				FA8372BC235F2A2000F2E044 /* AppCoordinator.swift in Sources */,
+				FA8372C0235F563C00F2E044 /* AuthErrorCoordinator.swift in Sources */,
 				FA7228A2235A77A800FAE942 /* ForecastDTO.swift in Sources */,
 				FA72289D235A746200FAE942 /* Dependencies.swift in Sources */,
 				FA722889235A716A00FAE942 /* MainViewController.swift in Sources */,

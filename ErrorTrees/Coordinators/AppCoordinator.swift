@@ -13,22 +13,15 @@ class AppCoordinator: Coordinator<Never> {
     }
 
     override func start() -> PrimitiveSequence<SingleTrait, Never> {
-        return Single.deferred { [window, deps] in
+        return Single.deferred { [unowned self, window, deps] in
             let controller = MainViewController.instantiate()
 
             controller.viewModel = MainViewModel(deps: deps, temperatureRange: -10...25)
 
             controller.viewModel.authError
-                .flatMapLatest { [unowned controller] error -> Single<Void> in
-                    let authController = AuthErrorController.instantiate()
-
-                    authController.viewModel = AuthErrorViewModel(presenter: error)
-
-                    controller.present(authController, animated: true)
-
-                    return authController.viewModel.logIn
-                        .take(1)
-                        .asSingle()
+                .flatMapLatest { [unowned self, unowned controller] error -> Single<Void> in
+                    let coordinator = AuthErrorCoordinator(controller: controller, error: error)
+                    return self.startChild(coordinator)
                 }
                 .bind(onNext: { [unowned controller] _ in
                     controller.dismiss(animated: true)
