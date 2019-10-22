@@ -1,7 +1,15 @@
+import RxCocoa
+import RxFlow
 import RxSwift
 
 struct AuthErrorViewModel {
     let presenter: AuthErrorModelRepresentable
 
-    let logIn = PublishSubject<Void>()
+    let steps = PublishRelay<Step>()
+}
+
+extension AuthErrorViewModel: Stepper {
+    func logIn() {
+        steps.accept(MainCoordinator.Steps.logIn)
+    }
 }

@@ -21,6 +21,7 @@
 		FA72289D235A746200FAE942 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA72289C235A746200FAE942 /* Dependencies.swift */; };
 		FA7228A0235A74CC00FAE942 /* DataDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA72289F235A74CC00FAE942 /* DataDownloadService.swift */; };
 		FA7228A2235A77A800FAE942 /* ForecastDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7228A1235A77A800FAE942 /* ForecastDTO.swift */; };
+		FA8372A2235F13D600F2E044 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8372A1235F13D600F2E044 /* MainCoordinator.swift */; };
 		FA8AF7E9235AFA2B003947E5 /* ForecastDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8AF7E8235AFA2B003947E5 /* ForecastDownloadService.swift */; };
 		FA8AF7EC235B038A003947E5 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8AF7EB235B038A003947E5 /* ErrorHandling.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		FA72289C235A746200FAE942 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		FA72289F235A74CC00FAE942 /* DataDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDownloadService.swift; sourceTree = "<group>"; };
 		FA7228A1235A77A800FAE942 /* ForecastDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDTO.swift; sourceTree = "<group>"; };
+		FA8372A1235F13D600F2E044 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		FA8AF7E8235AFA2B003947E5 /* ForecastDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDownloadService.swift; sourceTree = "<group>"; };
 		FA8AF7EB235B038A003947E5 /* ErrorHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 		FA722883235A716A00FAE942 /* ErrorTrees */ = {
 			isa = PBXGroup;
 			children = (
+				FA8372A0235F13C500F2E044 /* Coordinators */,
 				FA8AF7EA235B0378003947E5 /* ErrorHandling */,
 				FA72289E235A74BE00FAE942 /* Services */,
 				FA722898235A738A00FAE942 /* Workflows */,
@@ -148,6 +151,14 @@
 				FA8AF7E8235AFA2B003947E5 /* ForecastDownloadService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		FA8372A0235F13C500F2E044 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				FA8372A1235F13D600F2E044 /* MainCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		FA8AF7EA235B0378003947E5 /* ErrorHandling */ = {
@@ -265,6 +276,7 @@
 				FA049287235B63B60052B8D1 /* AuthErrorFromMain.swift in Sources */,
 				FA7228A0235A74CC00FAE942 /* DataDownloadService.swift in Sources */,
 				FA8AF7EC235B038A003947E5 /* ErrorHandling.swift in Sources */,
+				FA8372A2235F13D600F2E044 /* MainCoordinator.swift in Sources */,
 				FA8AF7E9235AFA2B003947E5 /* ForecastDownloadService.swift in Sources */,
 				FA72289B235A73A300FAE942 /* MainViewModel.swift in Sources */,
 			);

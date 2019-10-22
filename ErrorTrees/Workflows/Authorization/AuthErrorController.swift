@@ -22,7 +22,9 @@ class AuthErrorController: UIViewController {
         imageView.image = error.image
 
         logInButton.rx.tap
-            .bind(to: viewModel.logIn)
+            .bind(onNext: { [unowned self] _ in
+                self.viewModel.logIn()
+            })
             .disposed(by: disposeBag)
     }
 }

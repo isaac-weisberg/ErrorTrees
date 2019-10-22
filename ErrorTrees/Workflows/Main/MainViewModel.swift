@@ -1,3 +1,5 @@
+import RxFlow
+import RxCocoa
 import RxSwift
 
 private let url = URL(string: "https://apple.com")!
@@ -7,7 +9,7 @@ private enum BusinessLogicError: Error {
     case temperatureInvalid(Double)
 }
 
-struct MainViewModel {
+class MainViewModel {
     typealias Deps = HasForecastDownloadService
 
     enum TemperatureState {
@@ -19,9 +21,10 @@ struct MainViewModel {
     let temperature: Observable<TemperatureState>
     let minorError: Observable<ErrorSingularRepresentable?>
     let majorError: Observable<ErrorTitledSingularRepresentable>
-    let authError: Observable<AuthErrorModelRepresentable>
 
     let forecastRequested = PublishSubject<Void>()
+    let steps = PublishRelay<Step>()
+    let disposeBag = DisposeBag()
 
     init(deps: Deps, temperatureRange: ClosedRange<Double>) {
         let scheduler = SerialDispatchQueueScheduler(qos: .userInitiated)
@@ -129,7 +132,7 @@ struct MainViewModel {
             }
             .filter { $0 != nil }.map { $0! }
 
-        authError = forecast
+        forecast
             .map { result -> AuthErrorModelRepresentable? in
                 switch result.lastResult {
                 case .none, .success:
@@ -154,7 +157,16 @@ struct MainViewModel {
                 }
             }
             .filter { $0 != nil }.map { $0! }
+            .map { error in
+                MainCoordinator.Steps.authError(error)
+            }
+            .bind(to: self.steps)
+            .disposed(by: disposeBag)
     }
+}
+
+extension MainViewModel: Stepper {
+
 }
 
 extension BusinessLogicError: ErrorTitledSingularRepresentable {

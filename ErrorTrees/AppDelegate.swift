@@ -1,8 +1,11 @@
+import RxFlow
 import UIKit
 
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var dependencies: HasAllDependencies!
+    let flowCoordinator = FlowCoordinator()
+    var flow: MainCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 
@@ -15,26 +18,12 @@ import UIKit
 
         controller.viewModel = MainViewModel(deps: dependencies, temperatureRange: -10...25)
 
-        controller.viewModel.authError
-            .bind(onNext: { [unowned controller] error in
-                let authController = AuthErrorController.instantiate()
-
-                authController.viewModel = AuthErrorViewModel(presenter: error)
-
-                authController.viewModel.logIn
-                    .bind(onNext: { [unowned controller] _ in
-                        controller.dismiss(animated: true)
-                    })
-                    .disposed(by: authController.disposeBag)
-
-                controller.present(authController, animated: true)
-            })
-            .disposed(by: controller.disposeBag)
-
         window.rootViewController = controller
 
         window.makeKeyAndVisible()
 
+        flow = MainCoordinator(controller: controller)
+        flowCoordinator.coordinate(flow: flow, with: controller.viewModel)
 
         return true
     }
