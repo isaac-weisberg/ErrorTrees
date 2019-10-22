@@ -1,4 +1,6 @@
 PODS:
+  - CeylonYellow (0.0.1):
+    - RxSwift (~> 5.0)
   - RxCocoa (5.0.0):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -7,6 +9,7 @@ PODS:
   - RxSwift (5.0.0)
 
 DEPENDENCIES:
+  - CeylonYellow (from `https://github.com/isaac-weisberg/CeylonYellow`)
   - RxCocoa
   - RxSwift
 
@@ -16,11 +19,21 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
 
+EXTERNAL SOURCES:
+  CeylonYellow:
+    :git: https://github.com/isaac-weisberg/CeylonYellow
+
+CHECKOUT OPTIONS:
+  CeylonYellow:
+    :commit: bd3dca1d86a5f64eb6be6a479e72bbae859a34e7
+    :git: https://github.com/isaac-weisberg/CeylonYellow
+
 SPEC CHECKSUMS:
+  CeylonYellow: b7802c54d6a790bde427a385c86f602b4f214c51
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
 
-PODFILE CHECKSUM: f3d27d745452487a1c85fb9afafcf82e91fa0aa8
+PODFILE CHECKSUM: 396fa678a52f4912178aa89ec9154dbb4ea7cb70
 
 COCOAPODS: 1.8.4
