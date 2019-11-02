@@ -73,6 +73,8 @@ class MainViewController: UIViewController {
                 self.present(alert, animated: true)
             })
             .disposed(by: disposeBag)
+
+        asdf().disposed(by: disposeBag)
     }
 }
 
@@ -81,4 +83,19 @@ extension MainViewController {
         return UIStoryboard(name: "Main", bundle: .main)
             .instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
     }
+}
+
+func asdf() -> Disposable {
+    return Observable
+        .combineLatest(
+            Observable.from([(), (), ()]).observeOn(SerialDispatchQueueScheduler(qos: .userInitiated)),
+            Observable.from([(), (), ()]).observeOn(SerialDispatchQueueScheduler(qos: .userInitiated)),
+//            Observable.from([(), (), ()]).observeOn(MainScheduler.asyncInstance).asObservable(), // will reschedule all events to main queue
+            Observable.from([(), (), ()]).observeOn(SerialDispatchQueueScheduler(qos: .userInitiated))
+        ) { _, _, _ in
+            ()
+        }
+        .subscribe { void in
+            print(void)
+        }
 }

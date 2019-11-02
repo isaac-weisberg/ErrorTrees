@@ -12,3 +12,13 @@ func downloadJson<Target: Decodable>(from url: URL) -> Single<Target> {
             parse(json: data)
         }
 }
+
+func observables() {
+    let foo = Observable.just(())
+    let bar = Observable.just(())
+        .observeOn(ConcurrentDispatchQueueScheduler(queue: .global()))
+    let baz = Observable.just(())
+        .observeOn(MainScheduler.instance)
+
+    print(foo, bar, baz)
+}
